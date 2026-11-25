@@ -3,13 +3,14 @@ export async function api<T>(path: string, init?: RequestInit): Promise<T> {
     ...init,
     headers: {
       "Content-Type": "application/json",
-      "X-Dev-Roles": localStorage.getItem("iccc-role") ?? "Engineer",
+      "X-Dev-Roles": "Engineer",
       "X-Dev-Teams": "11111111-1111-1111-1111-111111111111",
       ...(init?.headers ?? {}),
     },
   });
   if (!response.ok) {
-    throw new Error(await response.text());
+    const detail = (await response.text()).trim();
+    throw new Error(detail || `The calculator returned ${response.status}.`);
   }
   const text = await response.text();
   if (!text) return undefined as T;
