@@ -1,0 +1,112 @@
+<main>
+  <h1>Size from a load test</h1>
+  <p class="note">
+    Enter the machine you tested and the rate that machine held. The result is how many copies of that machine the target needs.
+  </p>
+  <form (ngSubmit)="calculate()">
+    <fieldset>
+      <legend>Target</legend>
+      <label>
+        Requests per second
+        <input name="targetRps" [(ngModel)]="form.targetRps" inputmode="decimal" />
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>Machine used in the test</legend>
+      <div class="fields">
+        <label>
+          Instances
+          <input name="instances" [(ngModel)]="form.instances" inputmode="numeric" />
+        </label>
+        <label>
+          vCPU per instance
+          <input name="vcpu" [(ngModel)]="form.vcpu" inputmode="decimal" />
+        </label>
+        <label>
+          Memory
+          <span class="split">
+            <input name="memory" [(ngModel)]="form.memory" inputmode="decimal" />
+            <select name="memoryUnit" [(ngModel)]="form.memoryUnit">
+              <option value="MB">MB</option>
+              <option value="GB">GB</option>
+            </select>
+          </span>
+        </label>
+        <label>
+          Storage (GB)
+          <input name="storageGb" [(ngModel)]="form.storageGb" inputmode="decimal" />
+        </label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>What the test sustained</legend>
+      <div class="fields">
+        <label>
+          Requests per second
+          <input name="sustainedRps" [(ngModel)]="form.sustainedRps" inputmode="decimal" />
+        </label>
+        <label>
+          Held for (seconds)
+          <input name="durationSeconds" [(ngModel)]="form.durationSeconds" inputmode="numeric" />
+        </label>
+        <label>
+          CPU use (%)
+          <input name="cpuPercent" [(ngModel)]="form.cpuPercent" inputmode="decimal" />
+        </label>
+        <label>
+          Memory use (%)
+          <input name="memoryPercent" [(ngModel)]="form.memoryPercent" inputmode="decimal" />
+        </label>
+      </div>
+      <details>
+        <summary>Latency and errors</summary>
+        <div class="fields">
+          <label>
+            Errors observed (%)
+            <input name="errorPercent" [(ngModel)]="form.errorPercent" inputmode="decimal" />
+          </label>
+          <label>
+            Error limit (%)
+            <input name="errorLimitPercent" [(ngModel)]="form.errorLimitPercent" inputmode="decimal" />
+          </label>
+          <label>
+            p95 latency (ms)
+            <input name="p95Ms" [(ngModel)]="form.p95Ms" inputmode="decimal" />
+          </label>
+          <label>
+            p95 limit (ms)
+            <input name="p95LimitMs" [(ngModel)]="form.p95LimitMs" inputmode="decimal" />
+          </label>
+        </div>
+        <label class="check">
+          <input name="generatorSaturated" type="checkbox" [(ngModel)]="form.generatorSaturated" />
+          The load generator was maxed out
+        </label>
+      </details>
+    </fieldset>
+    <button type="submit" [disabled]="pending()">{{ pending() ? 'Calculating' : 'Calculate' }}</button>
+  </form>
+  <div #feedback>
+    @if (error()) {
+      <p class="banner">{{ error() }}</p>
+    }
+    @if (result()) {
+      <table>
+        <thead>
+          <tr>
+            <th>Resource</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of resources(); track row.name) {
+            <tr>
+              <td>{{ row.name }}</td>
+              <td>{{ row.quantity }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</main>

@@ -5,10 +5,10 @@ The platform sizes infrastructure from performance measurements. A recommendatio
 ## Run the API
 
 ```powershell
-dotnet run --project src/Iccc.Api
+dotnet run --project backend/src/Api --launch-profile http
 ```
 
-Development uses SQLite (`iccc-dev.db`) and a local identity header. The API seeds a labeled demonstration fixture for a .NET payments API, SQL Server, and Redis at a 10K requests-per-second target. Open `http://localhost:5173` after starting the web app, or call the API on `http://localhost:5000` (the launch profile may use another port; check the console).
+Development uses SQLite (`iccc-dev.db`) and a local identity header. The API seeds a labeled demonstration fixture for a .NET payments API, SQL Server, and Redis at a 10K requests-per-second target. Open `http://localhost:5173` after starting the frontend. The API listens on `http://localhost:5080`.
 
 Development requests can send:
 
@@ -16,12 +16,12 @@ Development requests can send:
 - `X-Dev-Roles`: `Engineer` or `Approver`
 - `X-Dev-Teams`: team id
 
-The seeded engineer and approver ids are in `src/Iccc.Infrastructure/Demo/DemoCatalog.cs`. Production refuses to start while `Auth:Mode` is `Development`.
+The seeded engineer and approver ids are in `backend/src/Infrastructure/Demo/DemoCatalog.cs`. Production refuses to start while `Auth:Mode` is `Development`.
 
 ## Web
 
 ```powershell
-cd web
+cd frontend
 npm install
 npm run dev
 ```
@@ -30,13 +30,13 @@ The dev server proxies `/api` to `http://localhost:5080`. Start the API with tha
 
 ```powershell
 $env:ASPNETCORE_URLS="http://localhost:5080"
-dotnet run --project src/Iccc.Api
+dotnet run --project backend/src/Api --launch-profile http
 ```
 
 ## Tests
 
 ```powershell
-dotnet test Iccc.slnx
+dotnet test backend/Iccc.slnx
 ```
 
 Capacity and pricing tests do not need a database. On this workstation, Smart App Control blocked newly built unsigned assemblies (`0x800711C7`), so the test host could not load them from the agent session. Run the same command in a developer terminal where local builds are allowed.

@@ -1,10 +1,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 WORKDIR /src
-COPY . .
-RUN dotnet publish src/Iccc.Api/Iccc.Api.csproj -c Release -o /app /p:UseAppHost=false
+COPY backend/ ./
+RUN dotnet publish src/Api/Api.csproj -c Release -o /app /p:UseAppHost=false
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
 COPY --from=build /app .
 EXPOSE 8080
-ENTRYPOINT ["dotnet", "Iccc.Api.dll"]
+ENTRYPOINT ["dotnet", "Api.dll"]

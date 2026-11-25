@@ -6,7 +6,8 @@ obj/
 *.user
 *.db
 *.db-journal
-web/node_modules/
-web/dist/
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
 iccc-dev.db
 TestResults/
