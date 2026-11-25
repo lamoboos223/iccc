@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Iccc.Api/Iccc.Api.csproj" />
+    <Project Path="src/Iccc.Application/Iccc.Application.csproj" />
+    <Project Path="src/Iccc.Capacity/Iccc.Capacity.csproj" />
+    <Project Path="src/Iccc.Costing/Iccc.Costing.csproj" />
+    <Project Path="src/Iccc.Domain/Iccc.Domain.csproj" />
+    <Project Path="src/Iccc.Infrastructure/Iccc.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Iccc.Api.Tests/Iccc.Api.Tests.csproj" />
+    <Project Path="tests/Iccc.Application.Tests/Iccc.Application.Tests.csproj" />
+    <Project Path="tests/Iccc.Capacity.Tests/Iccc.Capacity.Tests.csproj" />
+    <Project Path="tests/Iccc.Costing.Tests/Iccc.Costing.Tests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,12 @@
+bin/
+obj/
+.tools/
+.vs/
+.idea/
+*.user
+*.db
+*.db-journal
+web/node_modules/
+web/dist/
+iccc-dev.db
+TestResults/

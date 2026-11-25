@@ -1,0 +1,52 @@
+:root {
+  color: #1c1917;
+  background: #f6f4ef;
+  font-family: "Segoe UI", sans-serif;
+  line-height: 1.45;
+}
+
+body { margin: 0; }
+
+a { color: #1d4e89; text-decoration: none; }
+
+.shell { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+
+nav { background: #1c1917; color: #f6f4ef; padding: 20px 16px; }
+
+nav a { display: block; color: #f6f4ef; padding: 6px 0; }
+
+nav .active { font-weight: 650; }
+
+main { padding: 28px; max-width: 1100px; }
+
+h1 { font-size: 1.6rem; margin: 0 0 8px; }
+
+.note, .banner { background: #fff; border: 1px solid #e4dfd4; padding: 12px 14px; margin: 12px 0; }
+
+.banner { border-color: #9a6b2f; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+
+.stat { background: #fff; border: 1px solid #e4dfd4; padding: 12px; }
+
+.stat span { display: block; font-size: 1.4rem; }
+
+table { width: 100%; border-collapse: collapse; background: #fff; }
+
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e4dfd4; vertical-align: top; }
+
+.badge { display: inline-block; padding: 1px 6px; border: 1px solid #1c1917; font-size: 0.75rem; }
+
+.badge.Measured { background: #e5f2e9; }
+.badge.Calculated { background: #e7eef8; }
+.badge.Extrapolated { background: #f8ecd9; }
+.badge.Assumption { background: #eeeaf6; }
+.badge.Insufficient { background: #f8e4e4; }
+
+form { display: grid; gap: 8px; max-width: 520px; margin: 12px 0; }
+
+input, select, textarea, button { font: inherit; padding: 6px 8px; }
+
+button { background: #1c1917; color: #fff; border: 0; cursor: pointer; }
+
+pre { white-space: pre-wrap; background: #fff; padding: 12px; border: 1px solid #e4dfd4; }
